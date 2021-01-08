@@ -1,3 +1,6 @@
+This is a forked version of the original (and awesome) project by Ivan Dokov for mitigating my problem with --date attribute.
+All the credit goes to him.
+
 # Phockup
 
 [![Tests](https://github.com/ivandokov/phockup/workflows/Tests/badge.svg)](https://github.com/ivandokov/phockup/actions)
