@@ -12,32 +12,17 @@ The software will collect all files from the input directory and copy them to th
 All files which are not images or videos or those which do not have creation date information will be placed in a directory called `unknown` without file name change. By doing this you can be sure that the input directory can be safely deleted after the successful process completion because **all** files from the input directory have a copy in the output directory.
 
 ## Installation
-### Linux (snap)
-Requires [snapd](https://snapcraft.io/docs/core/install)
-```
-sudo snap install phockup
-```
-*Note: snap applications can access files only in your **home and `/media` directories** for security reasons. If your media files are not located in these directories you should use the installation method below.  
-If your files are in `/media` you should run the following command to allow access:*
-```
-sudo snap connect phockup:removable-media
-```
 
-### Linux (without snap)
-If you are using distro which doesn't support [snapd](https://snapcraft.io/docs/core/install) or you don't want to download the snap you can use the following commands to download the source and set it up
+
 ```
 sudo apt-get install python3 libimage-exiftool-perl -y
-curl -L https://github.com/ivandokov/phockup/archive/latest.tar.gz -o phockup.tar.gz
+## curl -L https://github.com/vpankaj97/phockup/archive/latest.tar.gz -o phockup.tar.gz -- TO UPDATE
 tar -zxf phockup.tar.gz
 sudo mv phockup-* /opt/phockup
 sudo ln -s /opt/phockup/phockup.py /usr/local/bin/phockup
-```
-
-### Mac
-Requires [Homebrew](http://brew.sh/)
-```
-brew tap ivandokov/homebrew-contrib
-brew install phockup
+sudo ln -s /opt/phockup/phock.py /usr/local/bin/phock
+sudo ln -s /opt/phockup/pdate.py /usr/local/bin/pdate
+sudo ln -s /opt/phockup/pmonth.py /usr/local/bin/pmonth
 ```
 
 ### Windows
@@ -49,12 +34,7 @@ brew install phockup
 * Open Command Prompt and `cd` to phockup folder
 * Use the command below (use `phockup.py` instead of `phockup`)
 
-### Docker
-```
-docker run -v ~/Pictures:/mnt ivandokov/phockup:latest phockup /mnt/Input /mnt/Output [PHOCKUP ARGUMENTS]
-```
 
-The `-v ~/Pictures:/mnt` part of the command mounts your `~/Pictures` directory to `/mnt` inside the container. You can pass any **absolute** path to be mounted to the container and later on be used as paths for the `phockup` command. The example above provides your `~/Pictures/Input` as `INPUTDIR` and `~/Pictures/Output` as `OUTPUDIR`. You can pass additional arguments afterwards.
 
 ## Usage
 Organize photos from one directory into another
@@ -70,6 +50,10 @@ Example:
 phockup ~/Pictures/camera ~/Pictures/sorted
 ```
 
+{
+ 
+        NOT SURE IF WORKS
+ 
 ### Date format
 If you want to change the output directories date format you can do it by passing the format as `-d | --date` argument.
 You can choose different year format (e.g. 17 instead of 2017) or decide
@@ -91,6 +75,7 @@ Example:
     YYYY/m/DD  -> 2011/Jul/17
     YY/m-DD    -> 11/Jul-17
 ```
+}
 
 ### Missing date information in EXIF
 If any of the photos does not have date information you can use the `-r | --regex` option to specify date format for date extraction from filenames:
